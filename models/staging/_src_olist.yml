@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: analytics-engineering-lab         # Logical name for the source
+    database: exalted-bonus-488516-k0       # project ID from BigQuery
+    schema: raw                             # dataset on BigQuery
+    description: "Olist raw data from BigQuery"
+    tables:                                 # List of tables in the source
+      - name: customers
+        description: "Data who bought the products"
+      - name: geolocation
+        description: "Data with geolocation information about customers and sellers"
+      - name: order_items
+        description: "Data which products were bought in each order"
+      - name: order_payments
+        description: "Data about payments of each order"
+      - name: order_reviews
+        description: "Data about reviews of each order"
+      - name: orders
+        description: "Data when each order was made and delivered and who made it"
+      - name: products
+        description: "Data about products"
+      - name: sellers
+        description: "Data who sold the products"

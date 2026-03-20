@@ -5,3 +5,5 @@ logs/
 dbt_internal_packages/
 profiles.yml
 *.json
+data/
+.env

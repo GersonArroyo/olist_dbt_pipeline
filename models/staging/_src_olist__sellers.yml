@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_olist__sellers
+    description: "Staging model for sellers data from Olist raw dataset"
+    columns:
+      - name: seller_id
+        data_type: string
+        description: "Seller's unique identifier"
+
+      - name: seller_zip_code_prefix
+        data_type: int64
+        description: "Prefix of the seller's zip code"
+
+      - name: seller_city
+        data_type: string
+        description: "Seller's city"
+
+      - name: seller_state
+        data_type: string
+        description: "Seller's state"

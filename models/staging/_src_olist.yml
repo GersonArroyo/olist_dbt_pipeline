@@ -1,24 +1,179 @@
 version: 2
 
 sources:
-  - name: analytics-engineering-lab         # Logical name for the source
-    database: exalted-bonus-488516-k0       # project ID from BigQuery
-    schema: raw                             # dataset on BigQuery
+  - name: raw                                   # Logical name for the source
+    database: exalted-bonus-488516-k0           # project ID from BigQuery
+    schema: raw                                 # dataset(schema) on BigQuery         
     description: "Olist raw data from BigQuery"
-    tables:                                 # List of tables in the source
-      - name: customers
-        description: "Data who bought the products"
+    tables:                                         # List of tables in the source
+      - name: customers                             # Logical name for the table
+        identifier: olist_customers_dataset         # actual table name in BigQuery
+        description: "who bought the products"     
+        columns:                                         
+          - name: customer_id
+            tests:                                      
+              - unique
+              - not_null
+          - name: customer_unique_id
+            tests:
+              - not_null
+          - name: customer_zip_code_prefix
+            tests:
+              - not_null
+          - name: customer_city
+            tests:
+              - not_null
+          - name: customer_state
+            tests:
+              - not_null
+
       - name: geolocation
-        description: "Data with geolocation information about customers and sellers"
+        identifier: olist_geolocation_dataset
+        description: "with geolocation information about customers and sellers"
+        columns:
+          - name: geolocation_zip_code_prefix
+            tests:
+              - not_null
+          - name: geolocation_lat
+            tests:
+              - not_null
+          - name: geolocation_lng
+            tests:
+              - not_null
+          - name: geolocation_city
+            tests:
+              - not_null
+          - name: geolocation_state
+            tests:
+              - not_null
+
       - name: order_items
-        description: "Data which products were bought in each order"
+        identifier: olist_order_items_dataset
+        description: "which products were bought in each order"
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+          - name: order_item_id
+            tests:
+              - not_null
+          - name: product_id
+            tests:
+              - not_null
+          - name: seller_id
+            tests:
+              - not_null
+          - name: shipping_limit_date
+            tests:
+              - not_null
+          - name: price
+            tests:
+              - not_null
+          - name: freight_value
+            tests:
+              - not_null
+
       - name: order_payments
-        description: "Data about payments of each order"
+        identifier: olist_order_payments_dataset
+        description: "about payments of each order"
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+          - name: payment_sequential
+            tests:
+              - not_null
+          - name: payment_type
+            tests:
+              - not_null
+          - name: payment_installments
+            tests:
+              - not_null
+          - name: payment_value
+            tests:
+              - not_null
+
       - name: order_reviews
-        description: "Data about reviews of each order"
+        identifier: olist_order_reviews_dataset
+        description: "about reviews of each order"
+        columns:
+          - name: order_id
+            tests:
+              - not_null
+          - name: review_id
+            tests:
+              - not_null
+          - name: review_score
+            tests:
+              - not_null
+          - name: review_comment_title
+          - name: review_comment_message
+
       - name: orders
-        description: "Data when each order was made and delivered and who made it"
+        identifier: olist_orders_dataset
+        description: "when each order was made and delivered"
+        columns:
+          - name: order_id
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            tests:
+              - not_null
+          - name: order_status
+            tests:
+              - not_null
+          - name: order_purchase_timestamp
+            tests:
+              - not_null
+          - name: order_approved_at
+          - name: order_delivered_carrier_date
+          - name: order_delivered_customer_date
+          - name: order_estimated_delivery_date
+            tests:
+              - not_null
+
       - name: products
-        description: "Data about products"
+        identifier: olist_products_dataset
+        description: "about products"
+        columns:
+          - name: product_id
+            tests:
+              - unique
+          - name: product_category_name
+          - name: product_name_lenght
+          - name: product_description_lenght
+          - name: product_photos_qty
+          - name: product_weight_g
+          - name: product_length_cm
+          - name: product_height_cm
+          - name: product_width_cm
+
       - name: sellers
-        description: "Data who sold the products"
+        identifier: olist_sellers_dataset
+        description: "who sold the products"
+        columns:
+          - name: seller_id
+            tests:
+              - unique
+              - not_null
+          - name: seller_zip_code_prefix
+            tests:
+              - not_null
+          - name: seller_city
+            tests:
+              - not_null
+          - name: seller_state
+            tests:
+              - not_null
+
+      - name: product_category_name_translation
+        identifier: product_category_name_translation
+        description: "Translation of product category names to English"
+        columns:
+          - name: string_field_0
+            tests:
+              - unique
+          - name: string_field_1
+            tests:
+              - unique

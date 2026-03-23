@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_olist__order_reviews
+    description: "Staging model for order reviews data from Olist raw dataset"
+    columns:
+      - name: review_id
+        data_type: string
+        description: "Unique identifier for the review"
+
+      - name: order_id
+        data_type: string
+        description: "Identifier for the order associated with the review"
+
+      - name: review_score
+        data_type: int64
+        description: "Score given by the customer"
+
+      - name: review_comment_title
+        data_type: string
+        description: "Title of the review"
+
+      - name: review_comment_message
+        data_type: string
+        description: "Message of the review"
+
+      - name: review_creation_date
+        data_type: timestamp
+        description: "When the review was created"
+
+      - name: review_answer_timestamp
+        data_type: timestamp
+        description: "When the review was answered"

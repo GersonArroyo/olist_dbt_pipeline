@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_olist__products
+    description: "Staging model for products data from Olist raw dataset"
+    columns:
+      - name: product_id
+        data_type: string
+        description: "Product's unique identifier"
+
+      - name: product_category_name
+        data_type: string
+        description: "Product category name"
+
+      - name: product_name_lenght
+        data_type: int64
+        description: "Length of the product name"
+
+      - name: product_description_lenght
+        data_type: int64
+        description: "Length of the product description"
+
+      - name: product_photos_qty
+        data_type: int64
+        description: "Number of photos associated with the product"
+
+      - name: product_weight_g
+        data_type: int64
+        description: "Weight of the product in grams"
+
+      - name: product_length_cm
+        data_type: int64
+        description: "Length of the product in centimeters"
+
+      - name: product_height_cm
+        data_type: int64
+        description: "Height of the product in centimeters"
+
+      - name: product_width_cm
+        data_type: int64
+        description: "Width of the product in centimeters"

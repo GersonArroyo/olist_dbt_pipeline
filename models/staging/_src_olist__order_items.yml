@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_olist__order_items
+    description: "Staging model for order items data from Olist raw dataset"
+    columns:
+      - name: order_id
+        data_type: string
+        description: " Unique identifier for each order"
+
+      - name: order_item_id
+        data_type: int64
+        description: "Unique identifier for each item within an order"
+
+      - name: product_id
+        data_type: string
+        description: "Unique identifier for each product"
+
+      - name: seller_id
+        data_type: string
+        description: "Unique identifier for each seller"
+
+      - name: shipping_limit_date
+        data_type: timestamp
+        description: "Date by which the item should be shipped"
+
+      - name: price
+        data_type: float64
+        description: "Price of the item within the order"
+
+      - name: freight_value
+        data_type: float64
+        description: "Value of the freight for the item within the order"

@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_olist__geolocation
+    description: "Staging model for geolocation data from Olist raw dataset"
+    columns:
+      - name: geolocation_zip_code_prefix
+        data_type: int64
+        description: "Prefix of the zip code for geolocation data"
+
+      - name: geolocation_lat
+        data_type: float64
+        description: "Latitude for geolocation data"
+
+      - name: geolocation_lng
+        data_type: float64
+        description: "Longitude for geolocation data"
+
+      - name: geolocation_city
+        data_type: string
+        description: "City for geolocation data"
+
+      - name: geolocation_state
+        data_type: string
+        description: "State for geolocation data"

@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_olist__order_payments
+    description: "Staging model for order payments data from Olist raw dataset"
+    columns:
+      - name: order_id
+        data_type: string
+        description: "Order's unique identifier"
+
+      - name: payment_sequential
+        data_type: int64
+        description: "Sequential number of the payment for the order"
+
+      - name: payment_type
+        data_type: string
+        description: "Type of the payment"
+
+      - name: payment_installments
+        data_type: int64
+        description: "Number of installments for the payment"
+
+      - name: payment_value
+        data_type: float64
+        description: "Total value of the payment"

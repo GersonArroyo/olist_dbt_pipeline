@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_olist__customers
+    description: "Staging model for customers data from Olist raw dataset"
+    columns:
+      - name: customer_id
+        data_type: string
+        description: "Unique identifier for each customer"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_unique_id
+        data_type: string
+        description: "Unique identifier for the customer across all orders"
+        tests:
+          - not_null
+
+      - name: customer_zip_code_prefix
+        data_type: int64
+        description: "Prefix of the customer's zip code"
+        tests:
+          - not_null
+
+      - name: customer_city
+        data_type: string
+        description: "Customer's city"
+        tests:
+          - not_null
+
+      - name: customer_state
+        data_type: string
+        description: "Customer's state"
+        tests:
+          - not_null

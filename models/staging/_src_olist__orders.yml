@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_olist__orders
+    description: "Staging model for orders data from Olist raw dataset"
+    columns:
+      - name: order_id
+        data_type: string
+        description: "Order's unique identifier"
+
+      - name: customer_id
+        data_type: string
+        description: "Identifier for the customer who placed the order"
+
+      - name: order_status
+        data_type: string
+        description: "Status of the order"
+
+      - name: order_purchase_timestamp
+        data_type: timestamp
+        description: "When the order was purchased"
+
+      - name: order_approved_at
+        data_type: timestamp
+        description: "When the order was approved"
+
+      - name: order_delivered_carrier_date
+        data_type: timestamp
+        description: "When the order was delivered by the carrier"
+
+      - name: order_delivered_customer_date
+        data_type: timestamp
+        description: "When the order was delivered to the customer"
+
+      - name: order_estimated_delivery_date
+        data_type: timestamp
+        description: "When the order was estimated to be delivered"

@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: fct_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: order_status
+      - name: order_purchase_timestamp
+      - name: order_approved_at
+      - name: order_delivered_carrier_date
+      - name: order_delivered_customer_date
+      - name: order_estimated_delivery_date
+      - name: payment_type
+      - name: payment_value
+
+  - name: fct_orders_items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: order_item_id
+        tests:
+          - not_null
+      - name: product_id
+        tests:
+          - not_null
+      - name: seller_id
+        tests:
+          - not_null
+      - name: shipping_limit_date
+      - name: price
+        tests:
+          - not_null
+      - name: freight_value
+
+  - name: dim_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+      - name: customer_zip_code_prefix
+      - name: customer_city
+      - name: customer_state
+
+  - name: dim_sellers
+    columns:
+      - name: seller_id
+        tests:
+          - unique
+          - not_null
+      - name: seller_zip_code_prefix
+      - name: seller_city
+      - name: seller_state
+
+  - name: dim_products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: product_category_name
+      - name: product_name_length
+      - name: product_description_length
+      - name: product_photos_qty
+      - name: product_weight_g
+      - name: product_length_cm
+      - name: product_height_cm
+      - name: product_width_cm
+

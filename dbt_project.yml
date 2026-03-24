@@ -37,5 +37,11 @@ models:
       
     marts:
       +materialized: table
+      commercial:
+        +schema: marts_commercial
+      logistics:
+        +schema: marts_logistcs
+      customer_experience:
+        +schema: marts_customer_experience
       
       

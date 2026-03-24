@@ -40,8 +40,10 @@ models:
       commercial:
         +schema: marts_commercial
       logistics:
-        +schema: marts_logistcs
+        +schema: marts_logistics
       customer_experience:
         +schema: marts_customer_experience
+      shared:
+        +schema: marts_shared
       
       

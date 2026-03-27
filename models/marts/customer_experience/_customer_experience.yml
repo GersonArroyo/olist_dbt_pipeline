@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fct_reviews
+    description: "Fact table for reviews"
+    columns:
+      - name: review_id
+        tests:
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+      - name: review_score
+      - name: review_comment_title
+      - name: review_comment_message
+      - name: review_creation_date
+        tests:
+          - not_null
+      - name: review_answer_timestamp
+      - name: order_status
+      - name: days_to_deliver
+      - name: is_on_time

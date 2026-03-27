@@ -1,37 +1,28 @@
 with source as (
 
-    select * from {{ ref('stg_olist__orders') }}
+    select * from {{ ref('int_orders_enriched') }}
 
 ),
 
-orders as (
+deliveries as (
 
     select
         order_id,
         order_status,
         order_purchase_timestamp,
         order_delivered_carrier_date,
-        date(order_delivered_customer_date) as order_delivered_customer_date,
-        date(order_estimated_delivery_date) as order_estimated_delivery_date,
+        order_delivered_customer_date,
+        order_estimated_delivery_date,
+        days_to_deliver,
+        is_on_time,
+        estimated_days_to_deliver,
+        days_to_carrier_delivery,
         CASE
-            WHEN order_delivered_customer_date IS NOT NULL 
-            THEN date_diff(date(order_delivered_customer_date), date(order_purchase_timestamp), DAY)
-        END as days_to_deliver,
-        CASE
-            WHEN order_delivered_customer_date IS NOT NULL 
-            THEN date(order_delivered_customer_date) <= date(order_estimated_delivery_date) 
-        END as is_on_time,
-        CASE
-            WHEN order_delivered_customer_date IS NOT NULL 
-            THEN date_diff(date(order_estimated_delivery_date), date(order_purchase_timestamp), DAY)
-        END as estimated_days_to_deliver,
-        CASE
-            WHEN order_delivered_carrier_date IS NOT NULL 
-            THEN date_diff(date(order_delivered_carrier_date), date(order_purchase_timestamp), DAY)
-        END as days_to_carrier_delivery
+            WHEN is_on_time = FALSE
+            THEN date_diff(order_delivered_customer_date, order_estimated_delivery_date, DAY)
+        END as delay_days
 
     from source
-    
-)
 
-select * from orders
+)
+select * from deliveries

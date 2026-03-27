@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: fct_deliveries
-    description: "Fact table for deliveries"
+  - name: int_orders_enriched
+    description: "Intermediate fact table for deliveries with date transformations and calculations"
     columns:
       - name: order_id
         tests:
@@ -18,9 +18,10 @@ models:
       - name: order_delivered_customer_date
       - name: order_estimated_delivery_date
       - name: days_to_deliver
+        description: "Number of days from purchase to delivery"
       - name: is_on_time
+        description: "Flag indicating if the order was delivered on time"
       - name: estimated_days_to_deliver
+        description: "Estimated number of days to deliver based on purchase and estimated delivery dates"
       - name: days_to_carrier_delivery
-      - name: delay_days
-        description: "Number of days the delivery was delayed (positive if late, negative if early)"
-        
+        description: "Number of days from purchase to carrier delivery"

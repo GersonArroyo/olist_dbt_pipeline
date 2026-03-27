@@ -19,7 +19,7 @@ models:
       - name: payment_type
       - name: payment_value
 
-  - name: fct_orders_items
+  - name: fct_order_items
     columns:
       - name: order_id
         tests:

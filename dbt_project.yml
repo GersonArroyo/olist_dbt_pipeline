@@ -45,5 +45,7 @@ models:
         +schema: marts_customer_experience
       shared:
         +schema: marts_shared
-      
+        
+    intermediate:
+      +materialized: view
       

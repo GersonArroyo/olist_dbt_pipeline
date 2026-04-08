@@ -25,4 +25,4 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
 
       - name: Test authentication
-        run: gcloud storage ls
+        run: bq ls --project_id=exalted-bonus-488516-k0

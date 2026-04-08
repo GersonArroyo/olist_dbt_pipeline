@@ -1,17 +1,12 @@
-name: Setup DBT
+name: Setup dbt Environment
 description: Prepare dbt environment
 
 runs:
   using: "composite"
   steps:
-    - name: Setup Python + dependencies
+    - name: Setup Python and dependencies
       uses: ./.github/actions/setup-python
 
-    - name: Install dbt (fallback if not in requirements)
-      shell: bash
-      run: |
-        pip install dbt-core dbt-bigquery
-
-    - name: Install dbt dependencies
+    - name: Install dbt packages
       shell: bash
       run: dbt deps

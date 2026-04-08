@@ -25,6 +25,22 @@ jobs:
           workload_identity_provider: "projects/52586954053/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
           service_account: "github-actions-sa@exalted-bonus-488516-k0.iam.gserviceaccount.com"
 
+      - name: Create dbt profiles
+        run: |
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << 'EOF'
+          olist_dbt_pipeline:
+            outputs:
+              dev:
+                type: bigquery
+                method: oauth
+                project: exalted-bonus-488516-k0
+                dataset: olist_dev
+                location: us-central1
+                threads: 4
+            target: dev
+          EOF
+
       - name: Run dbt build (dev)
         run: dbt build --target dev
       - name: Run dbt tests

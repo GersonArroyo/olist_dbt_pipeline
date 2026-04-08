@@ -1,0 +1,25 @@
+name: Pull Request CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup DBT
+        uses: ./.github/actions/setup-dbt
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: "projects/52586954053/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          service_account: "github-actions-sa@exalted-bonus-488516-k0.iam.gserviceaccount.com"
+
+      - name: Run dbt tests
+        run: dbt test --target dev

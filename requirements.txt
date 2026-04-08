@@ -1,4 +1,6 @@
-google-cloud-bigquery==2.30.0
+google-cloud-bigquery
 python-dotenv
+pandas
+pyarrow
 dbt-core==1.11.7
 dbt-bigquery==1.11.1

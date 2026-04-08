@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -21,5 +25,7 @@ jobs:
           workload_identity_provider: "projects/52586954053/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
           service_account: "github-actions-sa@exalted-bonus-488516-k0.iam.gserviceaccount.com"
 
+      - name: Run dbt build (dev)
+        run: dbt build --target dev
       - name: Run dbt tests
         run: dbt test --target dev

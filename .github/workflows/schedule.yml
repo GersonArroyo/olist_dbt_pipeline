@@ -21,5 +21,5 @@ jobs:
           workload_identity_provider: "projects/52586954053/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
           service_account: "github-actions-sa@exalted-bonus-488516-k0.iam.gserviceaccount.com"
 
-      - name: Run dbt (scheduled)
-        run: dbt run --target prod
+      - name: Run dbt build (prod)
+        run: dbt build --target prod

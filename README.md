@@ -1,20 +1,16 @@
-
 # Olist dbt Pipeline
 
 End-to-end data pipeline built with Python and dbt, using the Brazilian e-commerce dataset from Olist available on Kaggle.
 
-
 ## Data Sources
 
 [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) — Kaggle
-
 
 ## Architecture
 
 ```BASH
 CSV Files → Python (ingestion) → BigQuery (raw) → dbt (staging/intermediate/marts) → Power BI
 ```
-
 
 ## Project Structure
 
@@ -36,15 +32,17 @@ olist_dbt_pipeline/
 
 ```
 
-
 ## Datasets
 
-| Layer   | Dataset     | Description            |
-| ------- | ----------- | ---------------------- |
-| Raw     | raw         | CSV files loaded as-is |
-| Staging | olist_dev   | Cleaned and renamed    |
-| Marts   | olist_dev_* | Business-ready tables  |
+| Layer        | Dataset              | Description            |
+| ------------ | -------------------- | ---------------------- |
+| Raw          | raw                  | CSV files loaded as-is |
+| Staging      | olist_dev_staging    | Cleaned and renamed    |
+| Marts        | olist_dev_marts      | Business-ready tables  |
 
+## Documentation
+
+[dbt docs](https://gersonarroyo.github.io/olist_dbt_pipeline/)
 
 ## How to Run
 
@@ -59,7 +57,7 @@ olist_dbt_pipeline/
 **1.** Clone the repository
 
 ```bash
-clone https://github.com/GersonArroyo/olist_dbt_pipeline.git
+git clone https://github.com/GersonArroyo/olist_dbt_pipeline.git
 cd olist_dbt_pipeline
 ```
 
@@ -93,7 +91,6 @@ dbt deps
 dbt build
 ```
 
-
 ## Models
 
 #### Staging
@@ -107,11 +104,11 @@ Reusable transformations shared across marts. Contains date calculations and del
 #### Marts
 
 Business-ready tables organized by domain:
+
 - Commercial — orders, payments and product analysis
 - Logistics — delivery performance and timing
 - Customer Experience — reviews and satisfaction metrics
 - Shared — dimensions used across multiple domains
-
 
 ## Order Flow
 

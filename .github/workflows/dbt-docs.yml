@@ -33,16 +33,19 @@ jobs:
           cat > ~/.dbt/profiles.yml << 'EOF'
           olist_dbt_pipeline:
             outputs:
-              dev:
+              prod:
                 type: bigquery
                 method: oauth
                 project: exalted-bonus-488516-k0
-                dataset: olist_dev
+                dataset: olist_prod
                 location: us-central1
                 threads: 4
-            target: dev
+            target: prod
           EOF
     
+      - name: Debug profiles
+        run: cat ~/.dbt/profiles.yml
+        
       - name: Generate dbt docs
         run: dbt docs generate --target prod
 

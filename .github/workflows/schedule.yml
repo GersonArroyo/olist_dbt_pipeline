@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "0 0 * * 1-5"  # Segunda a sexta à meia-noite UTC
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   run-dbt:
     runs-on: ubuntu-latest

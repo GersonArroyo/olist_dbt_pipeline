@@ -44,5 +44,4 @@ jobs:
 
       - name: Run dbt build (dev)
         run: dbt build --target dev
-      - name: Run dbt test
-        run: dbt test --target dev
+

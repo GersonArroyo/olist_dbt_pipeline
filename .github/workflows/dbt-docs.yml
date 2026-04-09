@@ -29,19 +29,19 @@ jobs:
 
       - name: Create dbt profiles
         run: |
-            mkdir -p ~/.dbt
-            cat > ~/.dbt/profiles.yml << 'EOF'
-            olist_dbt_pipeline:
+          mkdir -p ~/.dbt
+          cat > ~/.dbt/profiles.yml << 'EOF'
+          olist_dbt_pipeline:
             outputs:
-                prod:
+              dev:
                 type: bigquery
                 method: oauth
                 project: exalted-bonus-488516-k0
-                dataset: olist_prod
+                dataset: olist_dev
                 location: us-central1
                 threads: 4
-            target: prod
-            EOF
+            target: dev
+          EOF
     
       - name: Generate dbt docs
         run: dbt docs generate --target prod

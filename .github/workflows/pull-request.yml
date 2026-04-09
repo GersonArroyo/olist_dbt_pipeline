@@ -41,7 +41,8 @@ jobs:
             target: dev
           EOF
 
+
       - name: Run dbt build (dev)
         run: dbt build --target dev
-      - name: Run dbt tests
+      - name: Run dbt test
         run: dbt test --target dev

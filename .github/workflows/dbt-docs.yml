@@ -1,0 +1,55 @@
+name: Generate dbt Docs
+
+on:
+    workflow_dispatch:
+    push:
+      branches: [ main ]
+
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup DBT
+        uses: ./.github/actions/setup-dbt
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: "projects/52586954053/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+          service_account: "github-actions-sa@exalted-bonus-488516-k0.iam.gserviceaccount.com"
+
+      - name: Create dbt profiles
+        run: |
+            mkdir -p ~/.dbt
+            cat > ~/.dbt/profiles.yml << 'EOF'
+            olist_dbt_pipeline:
+            outputs:
+                prod:
+                type: bigquery
+                method: oauth
+                project: exalted-bonus-488516-k0
+                dataset: olist_prod
+                location: us-central1
+                threads: 4
+            target: prod
+            EOF
+    
+      - name: Generate dbt docs
+        run: dbt docs generate --target prod
+
+      - name: Upload dbt docs artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+            path: ./target
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

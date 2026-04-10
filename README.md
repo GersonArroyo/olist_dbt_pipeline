@@ -16,7 +16,53 @@ CSV Files → Python (ingestion) → BigQuery (raw) → dbt (staging/intermediat
 
 <!-- TREE_START -->
 ```
-$TREE
+.
+├── analyses
+├── docs
+│   └── diagram-olist-dbt.drawio.svg
+├── macros
+├── models
+│   ├── intermediate
+│   │   ├── _intermediate.yml
+│   │   └── int_orders_enriched.sql
+│   ├── marts
+│   │   ├── commercial
+│   │   ├── customer_experience
+│   │   ├── logistics
+│   │   └── shared
+│   └── staging
+│       ├── _src_olist.yml
+│       ├── _src_olist__customers.yml
+│       ├── _src_olist__geolocation.yml
+│       ├── _src_olist__order_items.yml
+│       ├── _src_olist__order_payments.yml
+│       ├── _src_olist__order_reviews.yml
+│       ├── _src_olist__orders.yml
+│       ├── _src_olist__products.yml
+│       ├── _src_olist__sellers.yml
+│       ├── stg_olist__customers.sql
+│       ├── stg_olist__geolocation.sql
+│       ├── stg_olist__order_items.sql
+│       ├── stg_olist__order_payments.sql
+│       ├── stg_olist__order_reviews.sql
+│       ├── stg_olist__orders.sql
+│       ├── stg_olist__product_category_name_translation.sql
+│       ├── stg_olist__products.sql
+│       └── stg_olist__sellers.sql
+├── seeds
+├── snapshots
+├── src
+│   └── ingestion
+│       └── load_bigquery.py
+├── tests
+├── README.md
+├── dbt_project.yml
+├── package-lock.yml
+├── packages.yml
+└── requirements.txt
+
+17 directories, 27 files
+
 ```
 <!-- TREE_END -->
 

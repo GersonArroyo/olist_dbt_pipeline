@@ -15,7 +15,9 @@ CSV Files → Python (ingestion) → BigQuery (raw) → dbt (staging/intermediat
 ## Project Structure
 
 <!-- TREE_START -->
-
+```
+$TREE
+```
 <!-- TREE_END -->
 
 

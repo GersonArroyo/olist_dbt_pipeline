@@ -2,6 +2,14 @@
 
 End-to-end data pipeline built with Python and dbt, using the Brazilian e-commerce dataset from Olist available on Kaggle.
 
+## Objective
+
+This project aims to simulate a real-world data pipeline for an e-commerce company, transforming raw transactional data into analytical datasets to support business decisions such as:
+
+- Customer behavior analysis
+- Delivery performance tracking
+- Revenue and product insights
+
 ## Data Sources
 
 [Olist Brazilian E-Commerce Dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) — Kaggle
@@ -65,7 +73,6 @@ CSV Files → Python (ingestion) → BigQuery (raw) → dbt (staging/intermediat
 
 ```
 <!-- TREE_END -->
-
 
 ## Datasets
 
@@ -132,19 +139,43 @@ dbt build
 
 Cleans and standardizes raw data. One model per source table.
 
+ - `_src` files define source metadata (dbt sources)
+ - `stg_` models transform raw data into cleaned staging tables
+
 #### Intermediate
 
 Reusable transformations shared across marts. Contains date calculations and delivery metrics.
+
+ - Order flow is a common transformation that can be used in other models.
 
 #### Marts
 
 Business-ready tables organized by domain:
 
-- Commercial — orders, payments and product analysis
-- Logistics — delivery performance and timing
-- Customer Experience — reviews and satisfaction metrics
-- Shared — dimensions used across multiple domains
+ - Commercial — orders, payments and product analysis
+ - Logistics — delivery performance and timing
+ - Customer Experience — reviews and satisfaction metrics
+ - Shared — dimensions used across multiple domains
 
-## Order Flow
+## Future Improvements
+> [!NOTE]
+> Planned enhancements for this project:
+> - Custom macros for reusable transformations
+> - Data quality tests (schema + custom)
+> - Snapshots for slowly changing dimensions (SCD Type 2)
+> - Seeds for static reference data
+
+## CI/CD
+
+This project includes a CI/CD pipeline using GitHub Actions:
+
+ - Pull Requests: run dbt tests for validation
+ - Push to main: executes dbt build for deployment
+ - Scheduled runs: automated dbt execution
+ - Authentication with Google Cloud is handled via Workload Identity Federation (OIDC).
+
+![GitHub Actions](https://github.com/GersonArroyo/olist_dbt_pipeline/actions/workflows/push.yml/badge.svg)
+
+## Data Flow Diagram
 
 ![Order Flow](docs/diagram-olist-dbt.drawio.svg)

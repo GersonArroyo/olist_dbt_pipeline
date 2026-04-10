@@ -14,23 +14,10 @@ CSV Files → Python (ingestion) → BigQuery (raw) → dbt (staging/intermediat
 
 ## Project Structure
 
-```bash
+<!-- TREE_START -->
 
-olist_dbt_pipeline/
-├── src/
-│   └── ingestion/
-│       └── load_bigquery.py    # Loads CSV files into BigQuery raw dataset
-├── models/
-│   ├── staging/                # Data cleaning and renaming
-│   ├── intermediate/           # Reusable transformations
-│   └── marts/
-│       ├── commercial/         # Revenue and sales analysis
-│       ├── logistics/          # Delivery performance analysis
-│       ├── customer_experience/# Reviews and satisfaction analysis
-│       └── shared/             # Shared dimensions
-└── dbt_project.yml
+<!-- TREE_END -->
 
-```
 
 ## Datasets
 

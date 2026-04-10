@@ -1,0 +1,32 @@
+name: Run update README
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+    run-update-readme:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+
+          - name: Update README tree
+            run: |
+              TREE=$(tree -I '__pycache__|*.pyc|target|dbt_packages|.git|.github' --dirsfirst -L 3)
+              sed -i '/<!-- TREE_START -->/,/<!-- TREE_END -->/c\<!-- TREE_START -->\n```\n'"$TREE"'\n```\n<!-- TREE_END -->' README.md
+          - name: Commit and push changes
+            run: |
+              git config --global user.name "github-actions[bot]"
+              git config --global user.email "github-actions[bot]@users.noreply.github.com"
+              git add README.md
+              if ! git diff --cached --quiet; then
+                git commit -m "Update README tree"
+                git push
+              else
+                echo "No changes to commit"
+              fi

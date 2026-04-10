@@ -17,12 +17,13 @@ jobs:
 
           - name: Update README tree
             run: |
-                TREE=$(tree -I '__pycache__|*.pyc|target|dbt_packages|.git|.github' --dirsfirst -L 3)
+                tree -I '__pycache__|*.pyc|target|dbt_packages|.git|.github' --dirsfirst -L 3 > /tmp/tree.txt
                 python3 << 'PYEOF'
                 import re
                 with open('README.md', 'r') as f:
                     content = f.read()
-                tree = open('/dev/stdin').read() if False else "$TREE"
+                with open('/tmp/tree.txt', 'r') as f:
+                    tree = f.read()
                 new_section = f"<!-- TREE_START -->\n```\n{tree}\n```\n<!-- TREE_END -->"
                 content = re.sub(r'<!-- TREE_START -->.*?<!-- TREE_END -->', new_section, content, flags=re.DOTALL)
                 with open('README.md', 'w') as f:
